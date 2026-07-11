@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: collab-chat
+  labels:
+    app.kubernetes.io/name: collab-chat
+    app.kubernetes.io/managed-by: kubectl
