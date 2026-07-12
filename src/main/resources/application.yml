@@ -184,3 +184,8 @@ resilience4j:
         timeout-duration: 0s
         # Registrar métricas en Actuator
         register-health-indicator: true
+      channels-api:
+        limit-for-period: 100
+        limit-refresh-period: 1s
+        timeout-duration: 0s
+        register-health-indicator: true

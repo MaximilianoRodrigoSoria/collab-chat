@@ -42,9 +42,13 @@ Java 21 · WebSocket · Redis · PostgreSQL · Gradle · Flyway · Docker · JUn
 
 Organizado por **feature** en capas `domain -> application -> infrastructure`, con la regla de dependencia verificada por ArchUnit. La logica de negocio (dominio y casos de uso) no depende de framework ni de infraestructura; los adaptadores (web, persistencia, mensajeria) implementan puertos definidos por la aplicacion.
 
+## API
+
+Contexto `/collab-chat`. REST: `POST /api/v1/channels`, `POST /api/v1/channels/{id}/messages`, `GET /api/v1/channels/{id}/messages`, `GET /api/v1/channels/presence`. WebSocket STOMP en `/ws`; enviar a `/app/channels/{id}/send` → difunde en `/topic/channels/{id}`.
+
 ## Estado
 
-🚧 En planificacion / arranque. El diseno detallado (epicas, historias y criterios de aceptacion) vive en el plan del portafolio.
+✅ Nucleo funcional implementado: canales publicos, mensajes persistentes e historial, presencia de usuarios conectados, y tiempo real con **STOMP/WebSocket** (config, handshake, controller de mensajes, broadcast). Persistencia JPA/PostgreSQL + migracion Flyway, tests (unit + Testcontainers). Capa siguiente para escalar a varias instancias: **backplane Redis Pub/Sub** y presencia con TTL en Redis.
 
 ---
 
